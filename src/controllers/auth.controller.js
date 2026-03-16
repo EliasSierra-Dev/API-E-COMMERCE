@@ -1,7 +1,7 @@
 const User = require("../models/User.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const { validationResult, body } = require("express-validator");
+const { validationResult } = require("express-validator");
 
 async function register(req, res) {
   const errors = validationResult(req);
