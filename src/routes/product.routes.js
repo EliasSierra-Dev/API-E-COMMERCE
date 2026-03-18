@@ -1,10 +1,8 @@
 const express = require('express');
-const {registerProduct, updateProduct} = require('../controllers/product.controller');
+const {registerProduct, updateProduct, deleteProduct, listProducts} = require('../controllers/product.controller');
 const authMiddleware = require('../middlewares/auth.middleware');
 const { check } = require('express-validator');
 const product = express.Router();
-
-
 
 product.post('/product' , authMiddleware, [
   check('nombre', 'El nombre es obligatorio').notEmpty(),
@@ -22,5 +20,9 @@ product.put('/product/:id', authMiddleware, [
   check('categoria', 'La categoria es obligatoria').notEmpty()
 
 ], updateProduct)
+
+product.delete('/product/:id', authMiddleware, deleteProduct);
+
+product.get('/product', authMiddleware, listProducts);
 
 module.exports = product;
